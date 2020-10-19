@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AccueilComponent } from './accueil/accueil.component';
 import { AjoutIngredientComponent } from './ajout-ingredient/ajout-ingredient.component';
 import { AjoutRecetteComponent } from './ajout-recette/ajout-recette.component';
+import { CoursesComponent } from './courses/courses.component';
 import { DetailsComponent } from './details/details.component';
 import { IngredientsComponent } from './ingredients/ingredients.component';
 import { ModifIngredientComponent } from './modif-ingredient/modif-ingredient.component';
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path: 'quantite', component:QuantiteComponent},
   {path: 'recette', component:DetailsComponent},
   {path: 'quantite', component:QuantiteComponent},
+  {path: 'courses', component:CoursesComponent},
 
   {path: '**', component:AccueilComponent}
 ];

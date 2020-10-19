@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {Quantite} from '../models/Quantite'
 
+const URL = "http://localhost:8081/rest/quantite";
+
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +22,7 @@ export class QuantiteService {
   }
 
   getQuantiteById(id:number):Observable<Quantite>{
-      return this.http.get<Quantite>(URL+"getById"+id);
+      return this.http.get<Quantite>(URL+"getById/"+id);
   }
 
   updateQuantite(q:Quantite){
@@ -28,6 +30,10 @@ export class QuantiteService {
   }
 
   deleteQuantite(id:number){
-      return this.http.delete(URL+"/delete"+id);
+      return this.http.delete(URL+"/del/"+id, {observe:'response'});
+  }
+
+  getQuantiteByRecette(id:number):Observable<Quantite[]>{
+      return this.http.get<Quantite[]>(URL+"/rec/"+id);
   }
 }

@@ -33,7 +33,5 @@ export class RecetteService{
         return this.http.delete(URL+"del/"+id, {observe: 'response'});
     }
 
-    getIngredients():Observable<Ingredient[]>{
-        return this.http.get<Ingredient[]>(URL+"ingr");
-    }
+
 }

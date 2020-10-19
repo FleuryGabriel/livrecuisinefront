@@ -120,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "livrecuisinefront"
+    }
+  },
+  "defaultProject": "livrecuisinefront",
+  "cli": {
+    "analytics": false
+  }
 }

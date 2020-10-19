@@ -10,13 +10,15 @@
         <tr>
             <th>Nom</th>
             <th>Type d'ingrédient</th>
+            <th>Dose</th>
             <th>Opérations</th>
         </tr>
-        <tr *ngFor="let i of selected">
-            <td>{{i.nom}}</td>
-            <td>{{i.typeIngr}}</td>
-            <td><a class="btn btn-warning" [routerLink]="['/modifIngredient',{pId:i.id}]">Modifier</a> &nbsp;
-                <a class="btn btn-danger" (click)="retirer(i.id)">Retirer</a></td>
+        <tr *ngFor="let q of selected">
+            <td>{{q.ingredient.nom}}</td>
+            <td>{{q.ingredient.typeIngr}}</td>
+            <td>{{q.dose}} {{q.unite}}</td>
+            <td><a class="btn btn-warning" [routerLink]="['/modif-quantite',{pId:q.id}]">Modifier</a> &nbsp;
+                <a class="btn btn-danger" (click)="retirer(q.id)">Retirer</a></td>
         </tr>
     </table>
 </div>
@@ -42,4 +44,6 @@
     <br>
     <button class="btn btn-primary" (click)="ajoutSimple()">Ajouter</button>
 </div>
-
+<br>
+<br>
+<br>

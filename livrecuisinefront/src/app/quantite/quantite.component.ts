@@ -18,7 +18,7 @@ export class QuantiteComponent implements OnInit {
   quantite: Quantite = new Quantite();
   ingredient: Ingredient = new Ingredient();
   ingredients: Ingredient[] = new Array();
-  selected:Ingredient[];
+  selected:Quantite[] = new Array();
   dose:number = 0;  
   affiche:boolean = false;
 
@@ -40,11 +40,18 @@ export class QuantiteComponent implements OnInit {
       (data)=>{this.ingredients=data},
     (erreur)=>{console.log(erreur)});
 
-    this.rService.getIngredients().subscribe(
-      data => {this.selected=data},
-      erreur => {console.log(erreur)}
+    
+    this.ar.params.subscribe(
+      pars => {
+        let id = pars.pId;
+        if (id!=undefined){
+          this.qService.getQuantiteByRecette(id).subscribe(
+            data => {this.selected=data},
+            erreur => {console.log(erreur)}
+          )
+        }
+      }
     )
-
 
   }
 
@@ -53,11 +60,12 @@ export class QuantiteComponent implements OnInit {
     this.quantite.recette=this.recette;
     this.quantite.no_ingredient=this.ingredient.nom;
     this.quantite.no_recette=this.recette.nom;
-    this.selected.push(this.ingredient)
     this.qService.ajouterQuantite(this.quantite).subscribe(
       response => {
         if(response.status==200){
           history.go(0);
+        }else{
+          console.log("erreur lors de l'ajout");
         }
       }
     )
@@ -67,8 +75,16 @@ export class QuantiteComponent implements OnInit {
     
   }
 
-  retirer(){
-
+  retirer(id:number){
+    this.qService.deleteQuantite(id).subscribe(
+      response => {
+        if(response.status==200){
+          history.go(0);
+        }else{
+          console.log("erreur lors de la suppression");
+        }
+      }
+    )
   }
 
 }

@@ -19,7 +19,7 @@
         <td>{{r.source}}</td>
         <td>{{r.typePlat}}</td>
         <td>{{r.nbPersonnes}}</td>
-        <td><a href={{r.lien}} class="lien">Lien</a></td>
+        <td><a href={{r.lien}} class="lien" target="_blank">Lien</a></td>
         <td>
             <button class="btn btn-info" [routerLink]="['/recette',{pId:r.id}]">Détails</button> &nbsp;
             <button class="btn btn-primary" [routerLink]="['/quantite', {pId:r.id}]">Dosage</button> &nbsp;
@@ -28,3 +28,6 @@
         </td>
     </tr>
 </table>
+<br>
+<br>
+<br>

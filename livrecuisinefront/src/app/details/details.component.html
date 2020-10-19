@@ -1,1 +1,25 @@
-<p>details works!</p>
+<h2> Informations détaillées de la recette {{recette.nom}}</h2>
+<br>
+<div>
+    Nom : {{recette.nom}} <br>
+    Source : {{recette.source}} <br>
+    Type de plat : {{recette.typePlat}} <br>
+    Nombre de personne : {{recette.nbPersonnes}} <br>
+
+<hr>
+    <h3>Ingrédients</h3>
+    <table class="table table-bordered">
+        <tr>
+            <th style="text-align: center;">Nom</th>
+            <th style="text-align: center;">Type d'ingrédient</th>
+            <th style="text-align: center;">Quantité</th>
+            <th style="text-align: center;">Modifier</th>
+
+        </tr>
+        <tr *ngFor="let q of quantites" class="table table-bordered">
+            <td>{{q.no_ingredient}}</td>
+            <td>{{q.ingredient.typeIngr}}</td>
+            <td>{{q.dose}} - {{q.unite}}</td>
+            <td><a class="btn btn-info" [routerLink]="['/modif-ingredient', {pId:q.ingredient.id}]">Modifier</a></td>
+        </tr>
+    </table>

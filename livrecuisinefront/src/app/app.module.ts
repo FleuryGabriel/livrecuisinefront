@@ -16,6 +16,7 @@ import { RechercheComponent } from './recherche/recherche.component';
 import { ModifIngredientComponent } from './modif-ingredient/modif-ingredient.component';
 import { ModifRecetteComponent } from './modif-recette/modif-recette.component';
 import { QuantiteComponent } from './quantite/quantite.component';
+import { CoursesComponent } from './courses/courses.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { QuantiteComponent } from './quantite/quantite.component';
     RechercheComponent,
     ModifIngredientComponent,
     ModifRecetteComponent,
-    QuantiteComponent
+    QuantiteComponent,
+    CoursesComponent
   ],
   imports: [
     BrowserModule,

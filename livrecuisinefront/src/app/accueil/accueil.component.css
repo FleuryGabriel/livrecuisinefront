@@ -1,0 +1,13 @@
+.linear-gradient{
+    background: linear-gradient(grey, white);
+}
+
+h1{
+    text-align: center;
+}
+
+h3{
+    text-justify: auto;
+    margin-left: 50px;
+    margin-right: 50px;
+}

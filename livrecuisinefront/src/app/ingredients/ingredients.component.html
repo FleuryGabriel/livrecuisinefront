@@ -1,0 +1,21 @@
+<br>
+<h1><strong>Liste des Ingrédients</strong>
+</h1>
+<a class="btn btn-success btn-lg" [routerLink]="['/ajoutIngredient']" routerLinkActive="router-link-active"
+    id="grosbtn">
+    <i class="glyphicon glyphicon-plus"></i> Ajouter un ingrédient</a>
+<br>
+<br>
+<table class="table table-bordered" style="text-align: center;">
+    <tr>
+        <th>Nom</th>
+        <th>Type d'ingrédient</th>
+        <th>Opérations</th>
+    </tr>
+    <tr *ngFor="let i of ingredients">
+        <td>{{i.nom}}</td>
+        <td>{{i.typeIngr}}</td>
+        <td><a class="btn btn-warning" [routerLink]="['/modifIngredient',{pId:i.id}]">Modifier</a> &nbsp;
+            <a class="btn btn-danger" (click)="supprimer(i.id)">Supprimer</a></td>
+    </tr>
+</table>

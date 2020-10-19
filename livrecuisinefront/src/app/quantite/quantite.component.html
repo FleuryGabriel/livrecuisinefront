@@ -1,0 +1,45 @@
+<br>
+<h1 style="color: #4d88ff; text-align: center;"><strong>Modifier les dosages</strong>
+</h1>
+
+<h2 style="color: #4d88ff; text-align: center;">Vous modifiez la recette : {{recette.nom}}</h2>
+<br>
+
+<div>
+    <table class="table table-bordered" style="text-align: center;">
+        <tr>
+            <th>Nom</th>
+            <th>Type d'ingrédient</th>
+            <th>Opérations</th>
+        </tr>
+        <tr *ngFor="let i of selected">
+            <td>{{i.nom}}</td>
+            <td>{{i.typeIngr}}</td>
+            <td><a class="btn btn-warning" [routerLink]="['/modifIngredient',{pId:i.id}]">Modifier</a> &nbsp;
+                <a class="btn btn-danger" (click)="retirer(i.id)">Retirer</a></td>
+        </tr>
+    </table>
+</div>
+<br>
+<br>
+<br>
+<div style="margin-left: 7%;">
+    <h3>Veuillez saisir les quantités pour {{recette.nbPersonnes}} personne(s)</h3>
+    <br>
+    Ingrédient : 
+    <select [(ngModel)]="ingredient" name="ingredient">
+        <option *ngFor="let i of ingredients" [ngValue]="i">{{i.nom}}</option>
+    </select>
+    <br>
+    <br>
+    Dose : 
+    <input type="number" [(ngModel)]="quantite.dose">
+    <br>
+    <br>
+    Unité : 
+    <input type="text" [(ngModel)]="quantite.unite">
+    <br>
+    <br>
+    <button class="btn btn-primary" (click)="ajoutSimple()">Ajouter</button>
+</div>
+

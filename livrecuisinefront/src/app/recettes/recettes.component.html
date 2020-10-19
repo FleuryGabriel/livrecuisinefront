@@ -1,0 +1,30 @@
+<br>
+<h1><strong>Liste des Recettes</strong>
+</h1>
+<a class="btn btn-success btn-lg"  [routerLink]="['/ajoutRecette']" routerLinkActive="router-link-active" style="margin-left: 80%;">
+    <i class="glyphicon glyphicon-plus"></i> Ajouter une recette</a>
+<br>
+<br>
+<table class="table table-bordered" style="text-align: center;">
+    <tr>
+        <th>Nom</th>
+        <th>Source</th>
+        <th>Type de plat</th>
+        <th>Nombre de personnes</th>
+        <th>Lien</th>
+        <th>Opérations</th>
+    </tr>
+    <tr *ngFor="let r of recettes">
+        <td>{{r.nom}}</td>
+        <td>{{r.source}}</td>
+        <td>{{r.typePlat}}</td>
+        <td>{{r.nbPersonnes}}</td>
+        <td><a href={{r.lien}} class="lien">Lien</a></td>
+        <td>
+            <button class="btn btn-info" [routerLink]="['/recette',{pId:r.id}]">Détails</button> &nbsp;
+            <button class="btn btn-primary" [routerLink]="['/quantite', {pId:r.id}]">Dosage</button> &nbsp;
+            <button class="btn btn-warning" [routerLink]="['/modifRecette', {pId:r.id}]">Modifier</button> &nbsp;
+            <button class="btn btn-danger" (click)="supprimer(r.id)">Supprimer</button> &nbsp;
+        </td>
+    </tr>
+</table>

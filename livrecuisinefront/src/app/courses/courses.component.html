@@ -1,112 +1,31 @@
-<div>
-    <h5>Entrez le nombre de repas que vous prévoyez</h5>
-    <select [(ngModel)]="nb">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-        <option value="11">11</option>
-        <option value="12">12</option>
-        <option value="13">13</option>
-        <option value="14">14</option>
-    </select>
-</div>
-<br>
-<br>
-<br>
-<div *ngIf="nb>=1">
-    <select name="recette 1" [(ngModel)]="recette1">
-        <option *ngFor="let r of recettes">{{r.nom}}</option>
-    </select>
-</div>
-<div *ngIf="nb>=2">
-    <select name="recette 2" [(ngModel)]="recette2">
-        <option *ngFor="let r of recettes">{{r.nom}}</option>
-    </select>
-</div>
-<div *ngIf="nb>=3">
-    <select name="recette 3" [(ngModel)]="recette3">
-        <option *ngFor="let r of recettes">{{r.nom}}</option>
-    </select>
-</div>
-<div *ngIf="nb>=4">
-    <select name="recette 4" [(ngModel)]="recette4">
-        <option *ngFor="let r of recettes">{{r.nom}}</option>
-    </select>
-</div>
-<div *ngIf="nb>=5">
-    <select name="recette 5" [(ngModel)]="recette5">
-        <option *ngFor="let r of recettes">{{r.nom}}</option>
-    </select>
-</div>
-<div *ngIf="nb>=6">
-    <select name="recette 6" [(ngModel)]="recette6">
-        <option *ngFor="let r of recettes">{{r.nom}}</option>
-    </select>
-</div>
-<div *ngIf="nb>=7">
-    <select name="recette 7" [(ngModel)]="recette7">
-        <option *ngFor="let r of recettes">{{r.nom}}</option>
-    </select>
-</div>
-<div *ngIf="nb>=8">
-    <select name="recette 8" [(ngModel)]="recette8">
-        <option *ngFor="let r of recettes">{{r.nom}}</option>
-    </select>
-</div>
-<div *ngIf="nb>=9">
-    <select name="recette 9" [(ngModel)]="recette9">
-        <option *ngFor="let r of recettes">{{r.nom}}</option>
-    </select>
-</div>
-<div *ngIf="nb>=10">
-    <select name="recette 10" [(ngModel)]="recette10">
-        <option *ngFor="let r of recettes">{{r.nom}}</option>
-    </select>
-</div>
-<div *ngIf="nb>=11">
-    <select name="recette 11" [(ngModel)]="recette11">
-        <option *ngFor="let r of recettes">{{r.nom}}</option>
-    </select>
-</div>
-<div *ngIf="nb>=12">
-    <select name="recette 12" [(ngModel)]="recette12">
-        <option *ngFor="let r of recettes">{{r.nom}}</option>
-    </select>
-</div>
-<div *ngIf="nb>=13">
-    <select name="recette 13" [(ngModel)]="recette13">
-        <option *ngFor="let r of recettes">{{r.nom}}</option>
-    </select>
-</div>
-<div *ngIf="nb>=14">
-    <select name="recette 14" [(ngModel)]="recette14">
-        <option *ngFor="let r of recettes">{{r.nom}}</option>
-    </select>
-</div>
-<br>
-<br>
-<br>
-<button class="btn btn-info">Générer la liste</button>
+<h5>Entrez le nombre de repas que vous prévoyez</h5>
+<input type="number" [(ngModel)]="nb">
 
+<ng-container *ngIf="nb>0">
+    <br><br>
+    <h5>Quel menu? </h5>
+</ng-container>
+
+<ng-container *ngFor="let i of arrayOne(nb)">
+    <select name="recette" [(ngModel)]="selected[i]">
+        <option *ngFor="let r of recettes" [ngValue]="r">{{r.nom}}</option>
+    </select>
+    <br><br>
+</ng-container>
+
+<br><br>
+<button class="btn btn-info" (click)="genererListe()">Générer la liste</button>
+<br>
+<br>
+<br>
 <table class="table table-bordered">
     <tr>
         <th style="text-align: center;">Nom</th>
-        <th style="text-align: center;">Type d'ingrédient</th>
         <th style="text-align: center;">Quantité</th>
-        <th style="text-align: center;">Modifier</th>
 
     </tr>
     <tr *ngFor="let q of quantites" class="table table-bordered">
         <td>{{q.no_ingredient}}</td>
-        <td>{{q.ingredient.typeIngr}}</td>
         <td>{{q.dose}} - {{q.unite}}</td>
-        <td><a class="btn btn-info" [routerLink]="['/modif-ingredient', {pId:q.ingredient.id}]">Modifier</a></td>
     </tr>
 </table>

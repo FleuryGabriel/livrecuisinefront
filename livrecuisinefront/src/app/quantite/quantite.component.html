@@ -39,7 +39,16 @@
     <br>
     <br>
     Unité : 
-    <input type="text" [(ngModel)]="quantite.unite">
+    <select [(ngModel)]="quantite.unite" name="unite">
+        <option value="g">g</option>
+        <option value="mL">mL</option>
+        <option value="unit.">unit.</option>
+        <option value="c. à café">cuillère à café</option>
+        <option value="c. à soupe">cuillère à soupe</option>
+        <option value="tranche(s)">tranche(s)</option>
+        <option value="pincée(s)">pincée(s)</option>
+        <option value="poignée(s)">poignée(s)</option>
+    </select>
     <br>
     <br>
     <button class="btn btn-primary" (click)="ajoutSimple()">Ajouter</button>

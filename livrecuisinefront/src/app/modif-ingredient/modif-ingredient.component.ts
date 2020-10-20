@@ -10,7 +10,7 @@ import { IngredientService } from '../services/ingredient.service';
 })
 export class ModifIngredientComponent implements OnInit {
 
-  ingredient:Ingredient;
+  ingredient:Ingredient = new Ingredient();
 
   constructor(private rt:Router, private iService:IngredientService, private ar:ActivatedRoute) { }
 

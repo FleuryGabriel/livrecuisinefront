@@ -7,6 +7,7 @@ import { CoursesComponent } from './courses/courses.component';
 import { DetailsComponent } from './details/details.component';
 import { IngredientsComponent } from './ingredients/ingredients.component';
 import { ModifIngredientComponent } from './modif-ingredient/modif-ingredient.component';
+import { ModifQuantiteComponent } from './modif-quantite/modif-quantite.component';
 import { ModifRecetteComponent } from './modif-recette/modif-recette.component';
 import { QuantiteComponent } from './quantite/quantite.component';
 import { RecettesComponent } from './recettes/recettes.component';
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path: 'recette', component:DetailsComponent},
   {path: 'quantite', component:QuantiteComponent},
   {path: 'courses', component:CoursesComponent},
+  {path: 'modif-quantite', component:ModifQuantiteComponent},
 
   {path: '**', component:AccueilComponent}
 ];

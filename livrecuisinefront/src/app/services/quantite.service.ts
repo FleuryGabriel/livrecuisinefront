@@ -22,7 +22,7 @@ export class QuantiteService {
   }
 
   getQuantiteById(id:number):Observable<Quantite>{
-      return this.http.get<Quantite>(URL+"getById/"+id);
+      return this.http.get<Quantite>(URL+"/getById/"+id);
   }
 
   updateQuantite(q:Quantite){

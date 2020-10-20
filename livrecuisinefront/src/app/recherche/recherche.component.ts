@@ -21,55 +21,6 @@ export class RechercheComponent implements OnInit {
 
   }
 
-  rechCle() {
-    this.iService.getIngredientByMotCle(this.ingredient.cle).subscribe(
-      (data) => {
-        this.ingredients = data;
-        this.affiche = true;
-        this.ingredient = new Ingredient();
-      },
-      (erreur) => {
-        console.log(erreur);
-      })
-  }
 
-  rechId() {
-    this.iService.getIngredientById(this.ingredient.id).subscribe(
-      (data) => {
-        this.ingredient = data;
-        this.affiche = false;
-      },
-      (erreur) => {
-        console.log(erreur);
-      })
-
-  }
-
-  reset() {
-    this.ingredients = new Array();
-    this.affiche=false;
-  }
-
-  reset2() {
-    this.ingredient = new Ingredient();
-  }
-
-  supprimer(id: number) {
-    this.iService.deleteIngredient(id).subscribe(
-      response => {
-        console.log(response.status)
-        if (response.status == 200) {
-          this.rt.navigate(['/ingredients'])
-        } else {
-          Swal.fire({
-            title: 'Erreur lors de la suppression',
-            icon: 'error',
-            showConfirmButton: false,
-            timer: 1000
-          })
-        }
-      }
-    )
-  }
 
 }

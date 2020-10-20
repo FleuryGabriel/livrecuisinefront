@@ -9,7 +9,6 @@ export class Ingredient implements Deserializable{
     id:number;
     nom:string;
     typeIngr:string;
-    cle:string;
 
     quantites:Quantite[];
 

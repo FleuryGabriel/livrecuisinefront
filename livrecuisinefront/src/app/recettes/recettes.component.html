@@ -21,7 +21,7 @@
         <td>{{r.nbPersonnes}}</td>
         <td><a href={{r.lien}} class="lien" target="_blank">Lien</a></td>
         <td>
-            <button class="btn btn-info" [routerLink]="['/recette',{pId:r.id}]">Détails</button> &nbsp;
+            <button class="btn btn-info" [routerLink]="['/details',{pId:r.id}]">Détails</button> &nbsp;
             <button class="btn btn-primary" [routerLink]="['/quantite', {pId:r.id}]">Dosage</button> &nbsp;
             <button class="btn btn-warning" [routerLink]="['/modifRecette', {pId:r.id}]">Modifier</button> &nbsp;
             <button class="btn btn-danger" (click)="supprimer(r.id)">Supprimer</button> &nbsp;

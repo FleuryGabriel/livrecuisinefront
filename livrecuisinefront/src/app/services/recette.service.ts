@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { observable, Observable } from 'rxjs';
 import {Recette} from '../models/Recette'
 import { Ingredient } from '../models/Ingredient';
 
@@ -33,5 +33,12 @@ export class RecetteService{
         return this.http.delete(URL+"del/"+id, {observe: 'response'});
     }
 
+    getRecetteByMotCle(cle:string){
+        return this.http.get<Recette[]>(URL+"getCle/"+cle);
+    }
+
+    getRecetteByIngredient(id:number){
+        return this.http.get<Recette[]>(URL+"getIngr/"+id);
+    }
 
 }

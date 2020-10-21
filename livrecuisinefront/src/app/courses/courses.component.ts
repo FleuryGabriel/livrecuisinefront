@@ -20,6 +20,7 @@ export class CoursesComponent implements OnInit {
   quantites: Quantite[] = new Array();
   affiche: boolean = false;
   generable: boolean = true;  //On évite que l'utilisateur ne génère la liste en boucle
+  personnes: number[] = new Array();
 
   constructor(private rService: RecetteService, private qService: QuantiteService, private rt: Router, ar: ActivatedRoute) { }
 
@@ -36,52 +37,67 @@ export class CoursesComponent implements OnInit {
   }
 
   genererListe() {
+    //On s'assure que la liste est pas déjà générée
     if (this.generable) {
+
+      //On récupère les recettes sélectionnées et leurs quantités.
       for (let r of this.selected) {
         this.qService.getQuantiteByRecette(r.id).subscribe(data => {
           this.quantitesTransfert = data
-/*           this.quantites.push(this.quantitesTransfert[0]);
-          this.quantites[0].dose = 0; */
-          for(let t of this.quantitesTransfert){
-            this.quantites.push(t);
+
+          //On prends en compte le nombre de personne pour chaque recette.
+          //On récupère la position de la recette dans le tableau selected
+          let position: number = this.selected.findIndex(rec => rec.id == r.id)
+
+          //On verifie que le nombre de personne de la recette est égal à celui indiqué par l'utilisateur, 
+          //                                                                              sinon on adapte les doses
+          for (let t of this.quantitesTransfert) {
+
+            if (this.selected[position].nbPersonnes != this.personnes[position]) {
+              let coef: number = this.personnes[position] / this.selected[position].nbPersonnes;
+              t.dose = t.dose * coef;
+            }
+            
+            if (t.dose != 0) {
+              this.quantites.push(t);
+            }
           }
-        })
-        console.log(this.quantites)
-        console.log(this.quantites.length)
-        for(let i = 0; i<this.quantites.length; i++){
-          for(let j = i+1; j<this.quantites.length; j++){
-            console.log('avant le if')
-            if(this.quantites[i].no_ingredient.localeCompare(this.quantites[j].no_ingredient)==0){
-              console.log('conflit')
-              //Donc si on entre si on a deux fois le même ingrédient dans la liste.
-              if(this.quantites[i].unite.localeCompare(this.quantites[j].unite)==0){
-                //Les deux doses ont la même unité.
-                this.quantites[i].dose += this.quantites[j].dose;
-              }else{
-                //Les doses sont différentes
-                this.quantites[i].unite = this.quantites[i].dose + this.quantites[i].unite + " + " + this.quantites[j].dose
-                        + this.quantites[j].unite;
+
+
+          //On vérifie qu'il n'y ait pas de doublons. Si c'est le cas on additionne les quantités. 
+          for (let i = 0; i < this.quantites.length; i++) {
+            for (let j = i + 1; j < this.quantites.length; j++) {
+              if (this.quantites[i].no_ingredient.localeCompare(this.quantites[j].no_ingredient) == 0) {
+                //Donc si on entre si on a deux fois le même ingrédient dans la liste.
+                if (this.quantites[i].unite.localeCompare(this.quantites[j].unite) == 0) {
+                  //Les deux doses ont la même unité.
+                  this.quantites[i].dose += this.quantites[j].dose;
+                } else {
+                  //Les doses sont différentes
+                  console.log(this.quantites[i].unite)
+                  this.quantites[i].unite += " + " + this.quantites[j].dose + " " + this.quantites[j].unite;
+                }
+
+                //Dans tous les cas, on enlève le doublon et on reinitialise la boucle for.
+                this.quantites.splice(j);
+                i = 0;
+
               }
 
-              //Dans tous les cas, on enlève le doublon et on reinitialise la boucle for.
-              delete this.quantites[j];
-              i=0;
-
-            }else{
-              console.log('ingrédient différent')
             }
-
           }
-        }
+        })
+
+
 
 
       }
     }
 
-    this.generable=false;
+    this.generable = false;
 
   }
-   
+
 
 }
 

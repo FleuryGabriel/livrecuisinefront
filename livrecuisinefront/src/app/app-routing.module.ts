@@ -26,8 +26,6 @@ const routes: Routes = [
   {path: 'modifIngredient', component:ModifIngredientComponent},
   {path: 'modifRecette', component:ModifRecetteComponent},
   {path: 'quantite', component:QuantiteComponent},
-  {path: 'recette', component:DetailsComponent},
-  {path: 'quantite', component:QuantiteComponent},
   {path: 'courses', component:CoursesComponent},
   {path: 'modif-quantite', component:ModifQuantiteComponent},
 

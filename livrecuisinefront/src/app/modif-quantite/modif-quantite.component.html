@@ -1,5 +1,5 @@
 <br>
-<h1 style="color: #4d88ff; text-align: center;"><strong>Modification d'un ingrédient</strong>
+<h1 style="color: #4d88ff; text-align: center;"><strong>Modification des dosages</strong>
 </h1>
 <br>
 <div class="container-fluid" style="margin-left: auto; margin-right: auto;">
@@ -47,7 +47,7 @@
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-8">
                             <button type="submit" class="btn btn-warning" style="margin-left: 80%;"
-                                (click)="modifQuantite()"> Modifier</button>
+                                (click)="modifQuantite(quantite.recette.id)"> Modifier</button>
                         </div>
                     </div>
                 </form>

@@ -30,6 +30,7 @@ export class QuantiteComponent implements OnInit {
     this.ar.params.subscribe(
       pars => {
         let id = pars.pId;
+        console.log(id)
         if (id!=undefined){
           this.rService.getRecetteById(id).subscribe(data=>{this.recette=data})
         }

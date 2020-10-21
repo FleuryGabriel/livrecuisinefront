@@ -30,16 +30,14 @@ export class ModifQuantiteComponent implements OnInit {
         }
       }
     )
-
-
   }
 
 
-  modifQuantite(){
+  modifQuantite(id:number){
     this.qService.updateQuantite(this.quantite).subscribe(
       response =>{
         if(response.status==200){
-          this.rt.navigate(['recettes'])          
+          this.rt.navigate(['/quantite', {pId:id}])          
         }
       }
     )

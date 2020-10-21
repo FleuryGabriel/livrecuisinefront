@@ -26,23 +26,20 @@ export class DetailsComponent implements OnInit {
         if(id!=undefined){
           this.rService.getRecetteById(id).subscribe(
             data => {
-              this.recette=data;
+              this.recette=data; //Dès qu'on sort du subscribe, recette est remis à 0. Je sais pas pourquoi, à creuser.
+
+              this.qService.getQuantiteByRecette(this.recette.id).subscribe(data=>{
+                this.quantites=data;
+              })
+
             }
           )
         }
       }
     )
+    
 
-    this.qService.getAllQuantite().subscribe(
-      data => {this.allQuantite=data},
-      erreur => {console.log(erreur)}
-    )
 
-    for(let q of this.allQuantite){
-      if(q.recette.id==this.recette.id){
-        this.quantites.push(q);
-      }
-    }
 
   }
 

@@ -1,4 +1,4 @@
-<h5>Entrez le nombre de repas que vous prévoyez</h5>
+<h1>Entrez le nombre de repas que vous prévoyez</h1>
 <input type="number" [(ngModel)]="nb">
 
 <ng-container *ngIf="nb>0">
@@ -9,7 +9,10 @@
 <ng-container *ngFor="let i of arrayOne(nb)">
     <select name="recette" [(ngModel)]="selected[i]">
         <option *ngFor="let r of recettes" [ngValue]="r">{{r.nom}}</option>
-    </select>
+    </select>&nbsp;
+    pour
+    <input type="number" [(ngModel)]="personnes[i]">&nbsp;
+    personnes
     <br><br>
 </ng-container>
 
@@ -18,14 +21,16 @@
 <br>
 <br>
 <br>
-<table class="table table-bordered">
-    <tr>
-        <th style="text-align: center;">Nom</th>
-        <th style="text-align: center;">Quantité</th>
+<div *ngIf="!generable">
+    <table class="table table-bordered">
+        <tr>
+            <th style="text-align: center;">Nom</th>
+            <th style="text-align: center;">Quantité</th>
 
-    </tr>
-    <tr *ngFor="let q of quantites" class="table table-bordered">
-        <td>{{q.no_ingredient}}</td>
-        <td>{{q.dose}} - {{q.unite}}</td>
-    </tr>
-</table>
+        </tr>
+        <tr *ngFor="let q of quantites" class="table table-bordered">
+            <td>{{q.no_ingredient}}</td>
+            <td>{{q.dose}} {{q.unite}}</td>
+        </tr>
+    </table>
+</div>

@@ -17,7 +17,12 @@
 </ng-container>
 
 <br><br>
-<button class="btn btn-info" (click)="genererListe()">Générer la liste</button>
+<div *ngIf="generable">
+    <button class="btn btn-info" (click)="genererListe()">Générer la liste</button>
+</div>
+<div *ngIf="!generable">
+    <button class="btn btn-info" (click)="reset()">Nouvelle liste</button>
+</div>
 <br>
 <br>
 <br>
@@ -28,7 +33,7 @@
             <th style="text-align: center;">Quantité</th>
 
         </tr>
-        <tr *ngFor="let q of quantites" class="table table-bordered">
+        <tr *ngFor="let q of result" class="table table-bordered">
             <td>{{q.no_ingredient}}</td>
             <td>{{q.dose}} {{q.unite}}</td>
         </tr>
